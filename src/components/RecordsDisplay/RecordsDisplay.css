@@ -1,0 +1,59 @@
+.date-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .date-input-container label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .date-input-container input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
+  /* Add some responsive styling for smaller screens */
+  @media (max-width: 600px) {
+    .date-input-container {
+      flex-direction: column;
+    }
+  
+    .date-input-container label {
+      margin-bottom: 10px;
+    }
+  }
+
+  .records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .records-table th,
+  .records-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .records-table th {
+    background-color: #1a1a1a;
+  }
+  
+  /* Add some responsive styling for smaller screens */
+  @media (max-width: 600px) {
+    .records-table {
+      font-size: 14px;
+    }
+  
+    .records-table th,
+    .records-table td {
+      padding: 6px;
+    }
+  }
