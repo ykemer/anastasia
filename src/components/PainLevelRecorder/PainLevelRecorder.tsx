@@ -15,10 +15,8 @@ const PainLevelRecorder = () => {
       date: new Date().toISOString(),
     };
     addRecord(record);
-    console.log(record);
     setPainLevel(0); // Reset to default after submission
   };
-  console.log("render");
 
   const buttons = Array.from({ length: 10 }, (_, index) => (
     <button

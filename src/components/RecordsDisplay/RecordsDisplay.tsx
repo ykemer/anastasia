@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { useData } from "../../context/DataContext"; // Import useData
 import "./RecordsDisplay.css"; // Import the CSS file
+import { FaTrashAlt } from "react-icons/fa";
 
 const RecordsDisplay = () => {
-  const { records } = useData(); // Use the useData hook
+  const { records, deleteRecord } = useData(); // Use the useData hook
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
   const filteredRecords = records.filter((record) => {
     const recordDate = new Date(record.date);
-    return recordDate >= new Date(fromDate) && recordDate <= new Date(toDate);
+
+    const startDate = new Date(fromDate);
+    startDate.setHours(0, 0, 0, 0); // Set start time to 00:00:00
+    const endDate = new Date(toDate);
+    endDate.setHours(23, 59, 59, 999); // Set end
+
+    return recordDate >= startDate && recordDate <= endDate;
   });
 
   const exportToCSV = () => {
@@ -34,6 +41,10 @@ const RecordsDisplay = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const deleteRecords = (id: string) => {
+    deleteRecord(id);
   };
 
   return (
@@ -63,6 +74,7 @@ const RecordsDisplay = () => {
             <th>#</th>
             <th>Date</th>
             <th>Pain Level</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +83,11 @@ const RecordsDisplay = () => {
               <td>{index + 1}</td>
               <td>{new Date(record.date).toLocaleDateString()}</td>
               <td>{record.level}</td>
+              <td>
+                <button onClick={() => deleteRecords(record.id)}>
+                  <FaTrashAlt />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -78,7 +95,11 @@ const RecordsDisplay = () => {
       {filteredRecords.length === 0 && (
         <p>No records found for the selected date range.</p>
       )}
-      <button onClick={exportToCSV}>Export to CSV</button>
+      {filteredRecords.length > 0 && (
+        <button onClick={exportToCSV} className="export-button">
+          Export to CSV
+        </button>
+      )}
     </div>
   );
 };

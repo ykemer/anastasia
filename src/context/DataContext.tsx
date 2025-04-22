@@ -6,6 +6,7 @@ import { PainRecord } from "../types/PainRecord"; // Import PainRecord
 interface DataContextType {
   records: PainRecord[];
   addRecord: (newRecord: PainRecord) => void;
+  deleteRecord: (id: string) => void;
   getRecordsByDateRange: (startDate: string, endDate: string) => PainRecord[];
 }
 
@@ -35,6 +36,11 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const deleteRecord = (id: string) => {
+    const updatedRecords = records.filter((record) => record.id !== id);
+    setRecords(updatedRecords);
+  };
+
   const getRecordsByDateRange = (startDate: string, endDate: string) => {
     // Specify string type
     return records.filter((record) => {
@@ -46,7 +52,9 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <DataContext.Provider value={{ records, addRecord, getRecordsByDateRange }}>
+    <DataContext.Provider
+      value={{ records, addRecord, getRecordsByDateRange, deleteRecord }}
+    >
       {children}
     </DataContext.Provider>
   );

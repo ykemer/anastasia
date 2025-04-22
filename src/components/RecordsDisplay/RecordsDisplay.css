@@ -1,59 +1,92 @@
 .date-input-container {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%; /* Make the container full width */
+}
+
+.date-input-container label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%; /* Make the label full width */
+}
+
+.date-input-container input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  width: 100%; /* Make the input full width */
+  box-sizing: border-box; /* Include padding and border in the input's total width */
+}
+
+/* Add some responsive styling for smaller screens */
+@media (max-width: 600px) {
+  .date-input-container {
     flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  .date-input-container label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .date-input-container input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-  
-  /* Add some responsive styling for smaller screens */
-  @media (max-width: 600px) {
-    .date-input-container {
-      flex-direction: column;
-    }
-  
-    .date-input-container label {
-      margin-bottom: 10px;
-    }
   }
 
-  .records-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  .date-input-container label {
+    margin-bottom: 10px;
   }
-  
+}
+
+.export-button {
+  background-color: #007bff; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block; /* Changed to block */
+  font-size: 16px;
+  margin: 4px auto; /* Center horizontally */
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%; /* Make it 100% width */
+  box-sizing: border-box; /* Include padding and border in the button's total width */
+}
+
+.export-button:hover {
+  background-color: #0056b3;
+}
+
+.records-table {
+  width: 100%; /* Make the table 100% width */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.records-table th,
+.records-table td {
+
+  padding: 8px;
+  text-align: left;
+}
+
+
+
+/* Add some responsive styling for smaller screens */
+@media (max-width: 600px) {
+  .records-table {
+    font-size: 14px;
+  }
+
   .records-table th,
   .records-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    padding: 6px;
   }
-  
-  .records-table th {
-    background-color: #1a1a1a;
-  }
-  
-  /* Add some responsive styling for smaller screens */
-  @media (max-width: 600px) {
-    .records-table {
-      font-size: 14px;
-    }
-  
-    .records-table th,
-    .records-table td {
-      padding: 6px;
-    }
-  }
+}
+
+.records-table tbody button {
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove the border */
+  cursor: pointer; /* Change the cursor to a pointer */
+  padding: 0; /* Remove padding */
+}
+
+.records-table tbody button:hover {
+  opacity: 0.7; /* Reduce opacity on hover for a subtle effect */
+}
