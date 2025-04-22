@@ -12,6 +12,30 @@ const RecordsDisplay = () => {
     return recordDate >= new Date(fromDate) && recordDate <= new Date(toDate);
   });
 
+  const exportToCSV = () => {
+    // Implementation will be added here
+    const csvRows = [];
+    const headers = ["ID", "Date", "Pain Level"];
+    csvRows.push(headers.join(","));
+
+    filteredRecords.forEach((record) => {
+      const values = [record.id, record.date, record.level];
+      csvRows.push(values.join(","));
+    });
+
+    const csvString = csvRows.join("\n");
+
+    const blob = new Blob([csvString], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "pain_records.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div>
       <h2>Records Display</h2>
@@ -54,6 +78,7 @@ const RecordsDisplay = () => {
       {filteredRecords.length === 0 && (
         <p>No records found for the selected date range.</p>
       )}
+      <button onClick={exportToCSV}>Export to CSV</button>
     </div>
   );
 };

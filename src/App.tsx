@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Pain Tracker</h1>
+        <h1>Pain Tracker !</h1>
         <div className="menu">
           <button
             onClick={() => setActiveTab("recorder")}
