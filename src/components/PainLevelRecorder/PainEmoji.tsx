@@ -13,8 +13,8 @@ const PainEmoji = ({ level }: PainEmojiProps) => {
     6: "😫",
     7: "🤕",
     8: "😭",
-    9: "😵",
-    10: "💀",
+    9: "😨",
+    10: "🤯",
   };
 
   if (level < 0 || level > 10) {
