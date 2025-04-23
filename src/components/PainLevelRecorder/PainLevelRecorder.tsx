@@ -42,9 +42,11 @@ const PainLevelRecorder = () => {
       />
       {PainButtonsSelector({ painLevel, setPainLevel })}
       <br />
-      <button type="submit" className="submit-button" onClick={submit}>
-        Submit
-      </button>
+      {painLevel > 0 && (
+        <button type="submit" className="submit-button" onClick={submit}>
+          Submit
+        </button>
+      )}
     </div>
   );
 };
