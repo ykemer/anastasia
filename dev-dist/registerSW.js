@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/anastasia/dev-sw.js?dev-sw', { scope: '/anastasia/', type: 'classic' })

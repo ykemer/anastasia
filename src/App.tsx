@@ -10,11 +10,13 @@ function App() {
   return (
     <DataProvider>
       <div>
-        <h1>Pain Tracker</h1>
+        <h1 className="header">Pain Tracker</h1>
         <div className="menu">
           <button
             onClick={() => setActiveTab("recorder")}
-            className={activeTab === "recorder" ? "active" : ""}
+            className={
+              activeTab === "recorder" ? "menu-button active" : "menu-button"
+            }
             aria-selected={activeTab === "recorder"}
             role="tab"
           >
@@ -22,14 +24,22 @@ function App() {
           </button>
           <button
             onClick={() => setActiveTab("display")}
-            className={activeTab === "display" ? "active" : ""}
+            className={
+              activeTab === "display" ? "menu-button active" : "menu-button"
+            }
             aria-selected={activeTab === "display"}
             role="tab"
           >
             Records Display
           </button>
         </div>
-        {activeTab === "recorder" ? <PainLevelRecorder /> : <RecordsDisplay />}
+        <div className="tab-content">
+          {activeTab === "recorder" ? (
+            <PainLevelRecorder />
+          ) : (
+            <RecordsDisplay />
+          )}
+        </div>
       </div>
     </DataProvider>
   );

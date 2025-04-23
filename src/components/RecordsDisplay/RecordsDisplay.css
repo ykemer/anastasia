@@ -90,3 +90,20 @@
 .records-table tbody button:hover {
   opacity: 0.7; /* Reduce opacity on hover for a subtle effect */
 }
+
+.share-button {
+  background-color: #554379; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block; /* Changed to block */
+  font-size: 16px;
+  margin: 4px auto; /* Center horizontally */
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%; /* Make it 100% width */
+  box-sizing: border-box; /* Include padding and border in the button's total width */
+  margin-bottom: 30%;
+}

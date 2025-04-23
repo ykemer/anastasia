@@ -15,12 +15,11 @@
   }
   
   .pain-button.active {
-    
-    color: rgb(215, 236, 27);
+    color: #fff
   }
   
   .submit-button {
-    background-color: #4caf50; /* Green */
+    background-color: #554379;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -31,6 +30,7 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+    width: 100%;
   }
   
   .submit-button:hover {
@@ -38,7 +38,7 @@
   }
   
   .pain-level-display {
-    background-color: #f0f0f0;
+    background-color: #554379;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px; /* Add spacing after the display */
@@ -50,6 +50,36 @@
   
   .pain-level-display h2 {
     font-size: 24px;
-    color: #333;
+    color: #fff;
     margin: 0;
   }
+
+  .submission-message {
+    position: fixed;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #554379;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .fade-out {
+    opacity: 0;
+  }
+
+  .emoji {
+    justify-content: center;
+    display: flex;
+    font-size: 2em;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: stretch;
+
+}

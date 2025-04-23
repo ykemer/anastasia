@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useData } from "../../context/DataContext"; // Import useData
-import "./RecordsDisplay.css"; // Import the CSS file
+import { useData } from "../../context/DataContext";
+import "./RecordsDisplay.css";
 import { FaTrashAlt } from "react-icons/fa";
 
 const RecordsDisplay = () => {
-  const { records, deleteRecord } = useData(); // Use the useData hook
+  const { records, deleteRecord } = useData();
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
@@ -20,31 +20,46 @@ const RecordsDisplay = () => {
   });
 
   const exportToCSV = () => {
-    // Implementation will be added here
-    const csvRows = [];
-    const headers = ["ID", "Date", "Pain Level"];
-    csvRows.push(headers.join(","));
+    const csvData = filteredRecords.map((record, index) => ({
+      "#": index + 1,
+      Date: new Date(record.date).toLocaleDateString(),
+      "Pain Level": record.level,
+    }));
 
-    filteredRecords.forEach((record) => {
-      const values = [record.id, record.date, record.level];
-      csvRows.push(values.join(","));
-    });
+    const csvHeaders = Object.keys(csvData[0]).join(",");
+    const csvRows = csvData.map((record) => Object.values(record).join(","));
+    const csvFile = [csvHeaders, ...csvRows].join("\n");
 
-    const csvString = csvRows.join("\n");
-
-    const blob = new Blob([csvString], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "pain_records.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    return csvFile;
   };
 
   const deleteRecords = (id: string) => {
     deleteRecord(id);
+  };
+
+  const shareData = async () => {
+    if (navigator.share) {
+      try {
+        const csvFile = exportToCSV();
+        const blob = new Blob([csvFile], { type: "text/csv" });
+        const filesArray = [
+          new File([blob], "pain_records.csv", {
+            type: "text/csv",
+          }),
+        ];
+        const shareData = {
+          title: "Pain Tracker Records",
+          text: "Check out my pain records!",
+          files: filesArray,
+        };
+        await navigator.share(shareData);
+        console.log("Shared successfully!");
+      } catch (error) {
+        console.error("Error sharing:", error);
+      }
+    } else {
+      alert("Web Share API is not supported in your browser.");
+    }
   };
 
   return (
@@ -96,9 +111,11 @@ const RecordsDisplay = () => {
         <p>No records found for the selected date range.</p>
       )}
       {filteredRecords.length > 0 && (
-        <button onClick={exportToCSV} className="export-button">
-          Export to CSV
-        </button>
+        <div>
+          <button onClick={shareData} className="share-button">
+            Share CSV
+          </button>
+        </div>
       )}
     </div>
   );

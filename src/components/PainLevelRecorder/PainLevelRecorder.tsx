@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useData } from "../../context/DataContext"; // Import useData
 import { PainRecord } from "../../types/PainRecord"; // Import PainRecord
-import { FaRegStar, FaStar } from "react-icons/fa";
 import "./PainLevelRecorder.css";
+import PainButtonsSelector from "./PainButtonsSelector";
+import Toaster from "./Toaster";
+import PainEmoji from "./PainEmoji";
 
 const PainLevelRecorder = () => {
   const [painLevel, setPainLevel] = useState(0);
-  const { addRecord } = useData(); // Use the useData hook
+
+  const [showMessage, setShowMessage] = useState(false);
+  const { addRecord } = useData();
 
   const submit = () => {
     const record: PainRecord = {
@@ -15,27 +19,28 @@ const PainLevelRecorder = () => {
       date: new Date().toISOString(),
     };
     addRecord(record);
-    setPainLevel(0); // Reset to default after submission
+    setPainLevel(0);
+    setShowMessage(true);
   };
-
-  const buttons = Array.from({ length: 10 }, (_, index) => (
-    <button
-      key={index + 1}
-      onClick={() => setPainLevel(index + 1)}
-      className={`pain-button ${painLevel === index + 1 ? "active" : ""}`}
-    >
-      {index + 1 == painLevel ? <FaStar /> : <FaRegStar />}
-    </button>
-  ));
 
   return (
     <div className="pain-level-recorder">
+      <div className="emoji-display"></div>
+
       {painLevel > 0 && (
         <div className="pain-level-display">
-          <h2>Selected Pain Level: {painLevel}</h2>
+          <h2>
+            Pain Level: {painLevel} <PainEmoji level={painLevel} />
+          </h2>
         </div>
       )}
-      {buttons}
+
+      <Toaster
+        setShowMessage={setShowMessage}
+        showMessage={showMessage}
+        message="Pain level recorded!"
+      />
+      {PainButtonsSelector({ painLevel, setPainLevel })}
       <br />
       <button type="submit" className="submit-button" onClick={submit}>
         Submit
