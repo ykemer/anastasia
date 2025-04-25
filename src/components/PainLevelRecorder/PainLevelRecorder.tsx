@@ -4,7 +4,7 @@ import { PainRecord } from "../../types/PainRecord"; // Import PainRecord
 import "./PainLevelRecorder.css";
 import PainButtonsSelector from "./PainButtonsSelector";
 import Toaster from "./Toaster";
-import PainEmoji from "./PainEmoji";
+import PainLevelDisplay from "../RecordsDisplay/PainLevelDisplay";
 
 const PainLevelRecorder = () => {
   const [painLevel, setPainLevel] = useState(0);
@@ -25,16 +25,7 @@ const PainLevelRecorder = () => {
 
   return (
     <div className="pain-level-recorder">
-      <div className="emoji-display"></div>
-
-      {painLevel > 0 && (
-        <div className="pain-level-display">
-          <h2>
-            Pain Level: {painLevel} <PainEmoji level={painLevel} />
-          </h2>
-        </div>
-      )}
-
+      <PainLevelDisplay painLevel={painLevel} />
       <Toaster
         setShowMessage={setShowMessage}
         showMessage={showMessage}
