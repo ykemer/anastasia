@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useData } from "../../context/DataContext";
 import "./RecordsDisplay.css";
-import { FaTrashAlt } from "react-icons/fa";
+import PainRecordsTable from "./PainRecordsTable";
+import DateRangePicker from "./DateRangePicker";
 
 const RecordsDisplay = () => {
   const { records, deleteRecord } = useData();
@@ -65,51 +66,16 @@ const RecordsDisplay = () => {
   return (
     <div>
       <h2>Records Display</h2>
-      <div className="date-input-container">
-        <label>
-          From:
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-        </label>
-        <label>
-          To:
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
-        </label>
-      </div>
-      <table className="records-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Pain Level</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredRecords.map((record, index) => (
-            <tr key={record.id}>
-              <td>{index + 1}</td>
-              <td>{new Date(record.date).toLocaleDateString()}</td>
-              <td>{record.level}</td>
-              <td>
-                <button onClick={() => deleteRecords(record.id)}>
-                  <FaTrashAlt />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {filteredRecords.length === 0 && (
-        <p>No records found for the selected date range.</p>
-      )}
+      <DateRangePicker
+        fromDate={fromDate}
+        toDate={toDate}
+        setFromDate={setFromDate}
+        setToDate={setToDate}
+      />
+      <PainRecordsTable
+        records={filteredRecords}
+        deleteRecords={deleteRecords}
+      />
       {filteredRecords.length > 0 && (
         <div>
           <button onClick={shareData} className="share-button">
