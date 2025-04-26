@@ -5,6 +5,7 @@ import "./PainLevelRecorder.css";
 import PainButtonsSelector from "./PainButtonsSelector";
 import Toaster from "./Toaster";
 import PainLevelDisplay from "../RecordsDisplay/PainLevelDisplay";
+import SubmitPainRecordButton from "./SubmitPainRecordButton";
 
 const PainLevelRecorder = () => {
   const [painLevel, setPainLevel] = useState(0);
@@ -32,12 +33,7 @@ const PainLevelRecorder = () => {
         message="Pain level recorded!"
       />
       {PainButtonsSelector({ painLevel, setPainLevel })}
-      <br />
-      {painLevel > 0 && (
-        <button type="submit" className="submit-button" onClick={submit}>
-          Submit
-        </button>
-      )}
+      <SubmitPainRecordButton submit={submit} painLevel={painLevel} />
     </div>
   );
 };
