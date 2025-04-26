@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { PainRecord } from "../types/PainRecord";
 
 interface OfflineStorageHookResult {
@@ -7,10 +6,6 @@ interface OfflineStorageHookResult {
 }
 
 export const useOfflineStorage = (): OfflineStorageHookResult => {
-  useEffect(() => {
-    // Load data from localStorage on component mount
-  }, []);
-
   const saveData = (newData: PainRecord[]) => {
     localStorage.setItem("pain_records", JSON.stringify(newData));
   };

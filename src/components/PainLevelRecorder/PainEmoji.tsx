@@ -18,7 +18,7 @@ const PainEmoji = ({ level }: PainEmojiProps) => {
   };
 
   if (level < 0 || level > 10) {
-    return null; // or some default emoji
+    return null;
   }
 
   return <span className="emoji">{emojis[level]}</span>;

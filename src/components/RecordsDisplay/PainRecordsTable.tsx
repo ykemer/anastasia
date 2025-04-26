@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { FaTrashAlt } from "react-icons/fa";
 
 type PainRecordTableProps = {
@@ -14,9 +15,9 @@ const PainRecordsTable = ({ records, deleteRecords }: PainRecordTableProps) => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Date</th>
-          <th>Pain Level</th>
-          <th>Delete</th>
+          <th>{t("pain_record.table.header.date")}</th>
+          <th>{t("pain_record.table.header.pain_level")}</th>
+          <th>{t("pain_record.table.header.delete")}</th>
         </tr>
       </thead>
       <tbody>

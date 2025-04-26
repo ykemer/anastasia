@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useData } from "../../context/DataContext"; // Import useData
-import { PainRecord } from "../../types/PainRecord"; // Import PainRecord
+import { useData } from "../../infrastructure/context/DataContext"; // Import useData
+import { PainRecord } from "../../infrastructure/types/PainRecord"; // Import PainRecord
 import "./PainLevelRecorder.css";
 import PainButtonsSelector from "./PainButtonsSelector";
 import Toaster from "./Toaster";
-import PainLevelDisplay from "../RecordsDisplay/PainLevelDisplay";
+import PainLevelDisplay from "./PainLevelDisplay";
 import SubmitPainRecordButton from "./SubmitPainRecordButton";
+import { t } from "i18next";
 
 const PainLevelRecorder = () => {
   const [painLevel, setPainLevel] = useState(0);
@@ -30,7 +31,7 @@ const PainLevelRecorder = () => {
       <Toaster
         setShowMessage={setShowMessage}
         showMessage={showMessage}
-        message="Pain level recorded!"
+        message={t("toasts.pain_level_recorded")}
       />
       {PainButtonsSelector({ painLevel, setPainLevel })}
       <SubmitPainRecordButton submit={submit} painLevel={painLevel} />

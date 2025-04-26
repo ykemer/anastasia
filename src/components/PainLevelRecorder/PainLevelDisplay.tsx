@@ -1,4 +1,5 @@
-import PainEmoji from "../PainLevelRecorder/PainEmoji";
+import { t } from "i18next";
+import PainEmoji from "./PainEmoji";
 
 type PainLevelDisplayProps = {
   painLevel: number;
@@ -9,7 +10,7 @@ const PainLevelDisplay = ({ painLevel }: PainLevelDisplayProps) => {
   return (
     <div className="pain-level-display">
       <h2>
-        Pain Level: {painLevel} <PainEmoji level={painLevel} />
+        {t("input.pain_level")}: {painLevel} <PainEmoji level={painLevel} />
       </h2>
     </div>
   );

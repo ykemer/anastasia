@@ -2,15 +2,16 @@ import { useState } from "react";
 import "./App.css";
 import PainLevelRecorder from "./components/PainLevelRecorder/PainLevelRecorder";
 import RecordsDisplay from "./components/RecordsDisplay/RecordsDisplay";
-import { DataProvider } from "./context/DataContext";
+import { DataProvider } from "./infrastructure/context/DataContext";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [activeTab, setActiveTab] = useState("recorder");
-
+  const { t } = useTranslation();
   return (
     <DataProvider>
       <div>
-        <h1 className="header">Pain Tracker</h1>
+        <h1 className="header">{t("header.pain_tracker")}</h1>
         <div className="menu">
           <button
             onClick={() => setActiveTab("recorder")}
@@ -20,7 +21,7 @@ function App() {
             aria-selected={activeTab === "recorder"}
             role="tab"
           >
-            Pain Recorder
+            {t("menu.pain_recorder")}
           </button>
           <button
             onClick={() => setActiveTab("display")}
@@ -30,7 +31,7 @@ function App() {
             aria-selected={activeTab === "display"}
             role="tab"
           >
-            Records Display
+            {t("menu.display_records")}
           </button>
         </div>
         <div className="tab-content">

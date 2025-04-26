@@ -23,7 +23,7 @@ const Toaster = ({
   }, [showMessage, duration, setShowMessage]);
 
   if (!showMessage) {
-    return <> </>;
+    return null;
   }
 
   return (

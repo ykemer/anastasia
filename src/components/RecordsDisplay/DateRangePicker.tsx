@@ -1,3 +1,5 @@
+import { t } from "i18next";
+
 type DateRangePickerProps = {
   fromDate: string;
   toDate: string;
@@ -12,24 +14,24 @@ const DateRangePicker = ({
   setToDate,
 }: DateRangePickerProps) => {
   return (
-    <div className="date-input-container">
-      <label>
-        From:
+    <>
+      <div className="date-input-container">
+        <label className="date-picker-label">{t("input.date_from")}:</label>
         <input
           type="date"
           value={fromDate}
           onChange={(e) => setFromDate(e.target.value)}
         />
-      </label>
-      <label>
-        To:
+      </div>
+      <div className="date-input-container">
+        <label className="date-picker-label">{t("input.date_to")}:</label>
         <input
           type="date"
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
         />
-      </label>
-    </div>
+      </div>
+    </>
   );
 };
 
