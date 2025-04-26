@@ -12,8 +12,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const { t } = useTranslation();
-
   return (
     <DataProvider>
       <BrowserRouter basename="/anastasia">
