@@ -1,48 +1,54 @@
-import { useState } from "react";
 import "./App.css";
 import PainLevelRecorder from "./components/PainLevelRecorder/PainLevelRecorder";
 import RecordsDisplay from "./components/RecordsDisplay/RecordsDisplay";
 import { DataProvider } from "./infrastructure/context/DataContext";
 import { useTranslation } from "react-i18next";
+import {
+  BrowserRouter,
+  Link,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("recorder");
   const { t } = useTranslation();
+
   return (
     <DataProvider>
-      <div>
-        <h1 className="header">{t("header.pain_tracker")}</h1>
-        <div className="menu">
-          <button
-            onClick={() => setActiveTab("recorder")}
-            className={
-              activeTab === "recorder" ? "menu-button active" : "menu-button"
-            }
-            aria-selected={activeTab === "recorder"}
-            role="tab"
-          >
-            {t("menu.pain_recorder")}
-          </button>
-          <button
-            onClick={() => setActiveTab("display")}
-            className={
-              activeTab === "display" ? "menu-button active" : "menu-button"
-            }
-            aria-selected={activeTab === "display"}
-            role="tab"
-          >
-            {t("menu.display_records")}
-          </button>
-        </div>
-        <div className="tab-content">
-          {activeTab === "recorder" ? (
-            <PainLevelRecorder />
-          ) : (
-            <RecordsDisplay />
-          )}
-        </div>
-      </div>
+      <BrowserRouter basename="/anastasia">
+        <AppContent />
+      </BrowserRouter>
     </DataProvider>
+  );
+}
+
+function AppContent() {
+  const { t } = useTranslation();
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path ? "active" : "";
+  };
+
+  return (
+    <div>
+      <h1 className="header">{t("header.pain_tracker")}</h1>
+      <div className="menu">
+        <Link to="/" className={`menu-button ${isActive("/")}`}>
+          {t("menu.pain_recorder")}
+        </Link>
+        <Link to="/records" className={`menu-button ${isActive("/records")}`}>
+          {t("menu.display_records")}
+        </Link>
+      </div>
+      <div className="tab-content">
+        <Routes>
+          <Route path="/" element={<PainLevelRecorder />} />
+          <Route path="/records" element={<RecordsDisplay />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
