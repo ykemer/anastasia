@@ -1,0 +1,17 @@
+{
+  "header.pain_tracker": "Pain Tracker",
+  "menu.pain_recorder": "Pain Recorder",
+  "menu.display_records": "Show records",
+  "toasts.pain_level_recorded": "Pain level recorded!",
+  "input.date_from": "From",
+  "input.date_to": "To",
+  "input.pain_level": "Pain level",
+  "button.export_to_csv": "Export to CSV",
+  "button.share_csv": "Share CSV",
+  "button.submit": "Submit",
+  "message.no_records_found_for_range": "No records found for the selected date range.",
+
+  "pain_record.table.header.date": "Date",
+  "pain_record.table.header.pain_level": "Pain Level",
+  "pain_record.table.header.delete": "Delete"
+}
