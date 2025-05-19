@@ -22,7 +22,7 @@ function AppContent() {
       <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200  h-screen">
         <Header />
 
-        <div className="rounded-xl bg-white p-10 dark:bg-gray-900/80 mt-30 mx-4 h-3/4 shadow-lg overflow-x-auto">
+        <div className="rounded-xl bg-white p-10 dark:bg-gray-900/80 mt-4 mx-4 h-5/6 shadow-lg overflow-x-auto">
           <Routes>
             <Route path="/" element={<PainLevelRecorder />} />
             <Route path="/records" element={<RecordsDisplay />} />
