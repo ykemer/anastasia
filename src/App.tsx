@@ -1,15 +1,10 @@
 import "./App.css";
+import Header from "./components/common/Header";
+import Menu from "./components/common/Menu";
 import PainLevelRecorder from "./components/PainLevelRecorder/PainLevelRecorder";
 import RecordsDisplay from "./components/RecordsDisplay/RecordsDisplay";
 import { DataProvider } from "./infrastructure/context/DataContext";
-import { useTranslation } from "react-i18next";
-import {
-  BrowserRouter,
-  Link,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -22,31 +17,20 @@ function App() {
 }
 
 function AppContent() {
-  const { t } = useTranslation();
-  const location = useLocation();
-
-  const isActive = (path: string) => {
-    return location.pathname === path ? "active" : "";
-  };
-
   return (
-    <div>
-      <h1 className="header">{t("header.pain_tracker")}</h1>
-      <div className="menu">
-        <Link to="/" className={`menu-button ${isActive("/")}`}>
-          {t("menu.pain_recorder")}
-        </Link>
-        <Link to="/records" className={`menu-button ${isActive("/records")}`}>
-          {t("menu.display_records")}
-        </Link>
+    <>
+      <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200  h-screen">
+        <Header />
+
+        <div className="rounded-xl bg-white p-10 dark:bg-gray-900/80 mt-30 mx-4 h-3/4 shadow-lg overflow-x-auto">
+          <Routes>
+            <Route path="/" element={<PainLevelRecorder />} />
+            <Route path="/records" element={<RecordsDisplay />} />
+          </Routes>
+        </div>
+        <Menu />
       </div>
-      <div className="tab-content">
-        <Routes>
-          <Route path="/" element={<PainLevelRecorder />} />
-          <Route path="/records" element={<RecordsDisplay />} />
-        </Routes>
-      </div>
-    </div>
+    </>
   );
 }
 
