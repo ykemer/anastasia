@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useData } from "../../infrastructure/context/DataContext"; // Import useData
 import { PainRecord } from "../../infrastructure/types/PainRecord"; // Import PainRecord
-import "./PainLevelRecorder.css";
 import PainButtonsSelector from "./PainButtonsSelector";
 import Toaster from "./Toaster";
 import PainLevelDisplay from "./PainLevelDisplay";
@@ -26,14 +25,15 @@ const PainLevelRecorder = () => {
   };
 
   return (
-    <div className="pain-level-recorder">
+    <div className="container mx-auto flex flex-col">
       <PainLevelDisplay painLevel={painLevel} />
       <Toaster
         setShowMessage={setShowMessage}
         showMessage={showMessage}
         message={t("toasts.pain_level_recorded")}
       />
-      {PainButtonsSelector({ painLevel, setPainLevel })}
+      <PainButtonsSelector painLevel={painLevel} setPainLevel={setPainLevel} />
+
       <SubmitPainRecordButton submit={submit} painLevel={painLevel} />
     </div>
   );

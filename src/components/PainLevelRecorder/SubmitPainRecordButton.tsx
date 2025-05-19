@@ -1,4 +1,5 @@
 import { t } from "i18next";
+import SubmitButton from "../common/Button";
 
 type PainLevelRecorderProps = {
   painLevel: number;
@@ -9,11 +10,7 @@ const SubmitPainRecordButton = ({
   painLevel,
 }: PainLevelRecorderProps) => {
   if (painLevel <= 0) return null;
-  return (
-    <button type="submit" className="submit-button" onClick={submit}>
-      {t("button.submit")}
-    </button>
-  );
+  return <SubmitButton onClick={submit} label={t("button.submit")} />;
 };
 
 export default SubmitPainRecordButton;
