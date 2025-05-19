@@ -14,24 +14,30 @@ const DateRangePicker = ({
   setToDate,
 }: DateRangePickerProps) => {
   return (
-    <>
-      <div className="date-input-container">
-        <label className="date-picker-label">{t("input.date_from")}:</label>
+    <div className="flex flex-col gap-4 w-full px-2 mb-10">
+      <div className="flex flex-col">
+        <label className="mb-2 text-white-900 font-semibold text-lg">
+          {t("input.date_from")}:
+        </label>
         <input
           type="date"
           value={fromDate}
           onChange={(e) => setFromDate(e.target.value)}
+          className="rounded-xl border-2 border-purple-900 bg-purple-50 text-purple-900 px-4 py-3 text-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-300 transition"
         />
       </div>
-      <div className="date-input-container">
-        <label className="date-picker-label">{t("input.date_to")}:</label>
+      <div className="flex flex-col">
+        <label className="mb-2 text-white-900 font-semibold text-lg">
+          {t("input.date_to")}:
+        </label>
         <input
           type="date"
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
+          className="rounded-xl border-2 border-purple-900 bg-purple-50 text-purple-900 px-4 py-3 text-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-300 transition"
         />
       </div>
-    </>
+    </div>
   );
 };
 

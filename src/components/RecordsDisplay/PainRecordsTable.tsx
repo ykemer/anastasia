@@ -7,34 +7,59 @@ type PainRecordTableProps = {
 };
 const PainRecordsTable = ({ records, deleteRecords }: PainRecordTableProps) => {
   if (!records || records.length === 0) {
-    return <p>No records available.</p>;
+    return (
+      <p className="text-2xl text-center text-white-900 font-semibold mt-8">
+        No records available.
+      </p>
+    );
   }
 
   return (
-    <table className="records-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>{t("pain_record.table.header.date")}</th>
-          <th>{t("pain_record.table.header.pain_level")}</th>
-          <th>{t("pain_record.table.header.delete")}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {records.map((record, index) => (
-          <tr key={record.id}>
-            <td>{index + 1}</td>
-            <td>{new Date(record.date).toLocaleDateString()}</td>
-            <td>{record.level}</td>
-            <td>
-              <button onClick={() => deleteRecords(record.id)}>
-                <FaTrashAlt />
-              </button>
-            </td>
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-full rounded-xl shadow-lg overflow-hidden">
+        <thead>
+          <tr className="bg-purple-900 text-white-900 text-lg ">
+            <th className="py-3 px-2 font-bold">#</th>
+            <th className="py-3 px-2 font-bold">
+              {t("pain_record.table.header.date")}
+            </th>
+            <th className="py-3 px-2 font-bold">
+              {t("pain_record.table.header.pain_level")}
+            </th>
+            <th className="py-3 px-2 font-bold">
+              {t("pain_record.table.header.delete")}
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {records.map((record, index) => (
+            <tr
+              key={record.id}
+              className={`text-center ${
+                index % 2 === 0
+                  ? "bg-purple-500 text-white"
+                  : "bg-white text-purple-900"
+              }`}
+            >
+              <td className="py-2 px-2">{index + 1}</td>
+              <td className="py-2 px-2">
+                {new Date(record.date).toLocaleDateString()}
+              </td>
+              <td className="py-2 px-2 font-bold text-lg">{record.level}</td>
+              <td className="py-2 px-2">
+                <button
+                  onClick={() => deleteRecords(record.id)}
+                  className="text-red-600 hover:text-red-800 transition-colors duration-200 p-2 rounded-full hover:bg-red-100"
+                  aria-label={t("pain_record.table.header.delete")}
+                >
+                  <FaTrashAlt />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

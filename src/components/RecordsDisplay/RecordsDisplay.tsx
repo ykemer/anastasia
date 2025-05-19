@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useData } from "../../infrastructure/context/DataContext";
-import "./RecordsDisplay.css";
 import PainRecordsTable from "./PainRecordsTable";
 import DateRangePicker from "./DateRangePicker";
 import { useTranslation } from "react-i18next";
@@ -28,8 +27,10 @@ const RecordsDisplay = () => {
   };
 
   return (
-    <div>
-      <h2>{t("menu.display_records")}</h2>
+    <div className="container mx-auto flex flex-col">
+      <h2 className="text-4xl text-white text-center">
+        {t("menu.display_records")}
+      </h2>
       <DateRangePicker
         fromDate={fromDate}
         toDate={toDate}

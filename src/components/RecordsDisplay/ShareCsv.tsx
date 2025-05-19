@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import { exportToCSV } from "../../infrastructure/services/export-to-csv";
 import { PainRecord } from "../../infrastructure/types/PainRecord";
+import SubmitButton from "../common/Button";
 
 type ShareCsvProps = {
   records: PainRecord[]; // Replace 'any' with the actual type of your records
@@ -36,13 +37,7 @@ const ShareCsv = ({ records }: ShareCsvProps) => {
     return null;
   }
 
-  return (
-    <div>
-      <button onClick={shareData} className="share-button">
-        {t("button.share_csv")}
-      </button>
-    </div>
-  );
+  return <SubmitButton onClick={shareData} label={t("button.share_csv")} />;
 };
 
 export default ShareCsv;
