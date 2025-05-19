@@ -1,7 +1,7 @@
 import { t } from "i18next";
 import { exportToCSV } from "../../infrastructure/services/export-to-csv";
 import { PainRecord } from "../../infrastructure/types/PainRecord";
-import SubmitButton from "../common/Button";
+import SubmitButton from "../common/SubmitButton";
 
 type ShareCsvProps = {
   records: PainRecord[]; // Replace 'any' with the actual type of your records

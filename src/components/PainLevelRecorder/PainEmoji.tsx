@@ -21,7 +21,7 @@ const PainEmoji = ({ level }: PainEmojiProps) => {
     return null;
   }
 
-  return <span className="text-5xl p-5">{emojis[level]}</span>;
+  return <span className="text-5xl p-3">{emojis[level]}</span>;
 };
 
 export default PainEmoji;

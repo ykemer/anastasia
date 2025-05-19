@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import SubmitButton from "../common/Button";
+import SubmitButton from "../common/SubmitButton";
 
 type PainLevelRecorderProps = {
   painLevel: number;

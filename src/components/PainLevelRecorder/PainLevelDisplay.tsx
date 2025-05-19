@@ -6,15 +6,24 @@ type PainLevelDisplayProps = {
 };
 
 const PainLevelDisplay = ({ painLevel }: PainLevelDisplayProps) => {
-  if (painLevel === 0) return null;
+  const isVisible = painLevel !== 0;
+
   return (
-    <div className="absolute inset-0 mt-30 h-1/6 mx-4">
-      <div className="flex flex-col p-4 text-xl bold text-center bg-purple-900 rounded-lg mx-auto shadow-lg w-full">
-        <h2 className="text-4xl text-white ">
-          {t("input.pain_level")}: {painLevel}
-        </h2>
-        <PainEmoji level={painLevel} />
-      </div>
+    <div
+      className={`
+        mb-10 flex flex-col p-4 text-center bg-purple-900 rounded-lg
+        transition-all duration-500 ease-in-out
+        ${
+          isVisible
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-90 pointer-events-none"
+        }
+      `}
+    >
+      <h2 className="text-4xl text-white font-bold">
+        {t("input.pain_level")}: {painLevel}
+      </h2>
+      <PainEmoji level={painLevel} />
     </div>
   );
 };
